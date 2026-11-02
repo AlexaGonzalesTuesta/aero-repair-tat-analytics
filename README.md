@@ -6,6 +6,8 @@ An end-to-end IT business analysis and digital transformation project for an aer
 
 ![Stage bottleneck](outputs/charts/stage_bottleneck.png)
 
+Access dashboard here! (https://aero-repair-tat-analytics-eb8r3ndycesifmfduzgrsj.streamlit.app/)
+
 ## Business problem
 Aerospace repair stations commit to a contracted turnaround time for every unit they repair. Late units can leave aircraft on the ground, trigger contract penalties, and damage customer relationships. Leaders need to know **where repair time goes, which open orders will be late, and which improvements are worth funding**.
 
