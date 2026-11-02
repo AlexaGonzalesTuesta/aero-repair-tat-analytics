@@ -1,7 +1,3 @@
-"""Interactive Repair and Overhaul TAT dashboard.
-
-    streamlit run app/dashboard.py
-"""
 import sys
 from pathlib import Path
 
@@ -13,7 +9,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tat_analytics import config as C  # noqa: E402
 from tat_analytics import kpis as K  # noqa: E402
 
-BLUE, ORANGE, INK_2, GRID = "#2a78d6", "#eb6834", "#52514e", "#e6e5e1"
+BLUE, ORANGE, INK_2, GRID = "#2a78d6", "#eb6834", "#8a8984", "rgba(128,128,128,0.25)"
+GITHUB_URL = "https://github.com/AlexaGonzalesTuesta/aero-repair-tat-analytics"
+LINKEDIN_URL = "https://www.linkedin.com/in/alexa-gonzales-tuesta/"
 
 st.set_page_config(page_title="Repair TAT Analytics", layout="wide")
 
@@ -33,8 +31,8 @@ def load():
 
 def style(fig, height=360):
     fig.update_layout(
-        height=height, margin=dict(l=10, r=10, t=40, b=10), plot_bgcolor="white",
-        font=dict(color=INK_2), showlegend=False,
+        height=height, margin=dict(l=10, r=10, t=40, b=10),
+        plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)", showlegend=False,
     )
     fig.update_xaxes(gridcolor=GRID, title=None)
     fig.update_yaxes(gridcolor=GRID, title=None)
@@ -44,7 +42,35 @@ def style(fig, height=360):
 f_all, ev_all, at_risk_all = load()
 
 st.title("Aerospace Repair and Overhaul: Turnaround Time Analytics")
-st.caption("Synthetic data for portfolio demonstration. Data as of " + C.DATA_CUTOFF)
+st.markdown(
+    f"Created by **Alexa Gonzales Tuesta**  |  [GitHub repository]({GITHUB_URL})  |  [LinkedIn]({LINKEDIN_URL})"
+)
+
+st.markdown(
+    """
+**The problem.** Aerospace repair stations promise customers a contracted turnaround time (TAT) for every
+part they repair. When a part ships late, an aircraft can sit on the ground, the company pays contract
+penalties, and customer trust drops. Leaders usually find out after the fact, from manual reports, without
+knowing which step of the repair process caused the delay.
+
+**What this tool does.** I built this dashboard to turn repair order data into decisions. It shows how often
+repairs ship on time, where time is lost in the repair process, which open orders are likely to be late
+before it happens, and how much money each improvement idea could save.
+"""
+)
+
+with st.expander("How to use this dashboard", expanded=True):
+    st.markdown(
+        """
+1. **Filter** by site, part family, priority (AOG means aircraft on ground, the most urgent), or date range. Every number and chart updates.
+2. **Performance:** check on-time delivery against the 85% target and compare sites.
+3. **Bottlenecks:** find the repair stage that adds the most days, and the most common reason orders run late.
+4. **At-risk open orders:** see which orders still in progress are most likely to miss their deadline, so they can be expedited today.
+5. **What-if scenarios:** move the sliders to estimate how much on-time delivery and penalty cost would improve with each fix.
+
+*Data is synthetic, built to reflect real repair station challenges such as parts shortages, customer quote delays, and test failures. Data as of """ + C.DATA_CUTOFF + """.*
+"""
+    )
 
 c1, c2, c3, c4 = st.columns(4)
 sites = c1.multiselect("Site", sorted(f_all.site.unique()), default=sorted(f_all.site.unique()))
@@ -74,6 +100,7 @@ m[4].metric("Open orders past contract", h["open_past_contract"])
 tab1, tab2, tab3, tab4 = st.tabs(["Performance", "Bottlenecks", "At-risk open orders", "What-if scenarios"])
 
 with tab1:
+    st.caption("Is the repair station keeping its promises? Points below the dashed line mean the month missed the 85% on-time target.")
     a, b = st.columns(2)
     t = K.monthly_trend(f, min_orders=10)
     fig = px.line(t, x="month", y="on_time_pct", markers=True, title="On-time % by ship month")
@@ -91,6 +118,7 @@ with tab1:
     st.dataframe(K.by_dimension(f, "part_family"), use_container_width=True, hide_index=True)
 
 with tab2:
+    st.caption("Where does repair time go? The orange bar is the biggest bottleneck. The chart on the right ranks the main causes of late orders, so you know what to fix first.")
     a, b = st.columns(2)
     bn = K.stage_bottleneck(ev, f)
     colors = [ORANGE if v == bn.avg_days.max() else BLUE for v in bn.avg_days]
@@ -113,15 +141,22 @@ with tab2:
 
 with tab3:
     ar = at_risk_all[at_risk_all.order_id.isin(f.order_id)]
-    st.write(f"**{(ar.risk_band == 'High').sum()}** open orders are High risk of missing contracted TAT. "
-             "Scores come from a logistic regression trained on intake attributes only.")
+    st.caption("Which orders need attention today? A model trained on past orders scores every open order from 0 to 1 for "
+               "its chance of shipping late, using only what is known when the part arrives.")
+    st.write(f"**{(ar.risk_band == 'High').sum()}** open orders are High risk of missing their contracted turnaround time. "
+             "A negative value in days_to_contract_due means the order is already past its deadline.")
     band = st.radio("Risk band", ["High", "Medium", "Low", "All"], horizontal=True)
     view = ar if band == "All" else ar[ar.risk_band == band]
     st.dataframe(view, use_container_width=True, hide_index=True)
     st.download_button("Download as CSV", view.to_csv(index=False), "at_risk_open_orders.csv")
 
 with tab4:
-    st.write("Estimate the impact of improvement initiatives on the selected orders.")
+    st.caption("Is a fix worth funding? Each slider represents an improvement initiative. Move them to estimate the impact on the orders you filtered.")
+    st.markdown(
+        "- **Parts wait:** keep safety stock or add a second supplier for parts that are often short\n"
+        "- **Quote approval:** agree on pre-approved repair cost limits with customers so routine repairs skip the wait\n"
+        "- **Rework:** add a standard checklist before testing so fewer parts fail and need repair again"
+    )
     a, b, c = st.columns(3)
     pw = a.slider("Cut parts-wait time by", 0, 100, 30, 5, format="%d%%") / 100
     qa = b.slider("Cut quote-approval time by", 0, 100, 50, 5, format="%d%%") / 100
@@ -132,3 +167,6 @@ with tab4:
     x[1].metric("Avg TAT (days)", r["scenario_avg_tat"], f"{r['scenario_avg_tat'] - r['baseline_avg_tat']:+.1f}", delta_color="inverse")
     x[2].metric("Penalty savings", f"${r['penalty_savings_usd']:,.0f}")
     st.caption("Assumes removed wait time does not shift to another stage. Validate with a pilot before committing.")
+
+st.divider()
+st.caption(f"Built by Alexa Gonzales Tuesta with Python, pandas, scikit-learn, and Streamlit. Source code, requirements document, and process maps: [GitHub]({GITHUB_URL})")
