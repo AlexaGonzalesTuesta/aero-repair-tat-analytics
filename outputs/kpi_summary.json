@@ -1,0 +1,101 @@
+{
+  "headline": {
+    "closed_orders": 3789,
+    "open_orders": 211,
+    "avg_tat_days": 16.7,
+    "median_tat_days": 14.6,
+    "on_time_pct": 0.627,
+    "first_pass_yield": 0.842,
+    "avg_tat_vs_contract": 0.96,
+    "total_penalty_usd": 6267749.0,
+    "open_past_contract": 32
+  },
+  "bottleneck": [
+    {
+      "stage": "Receiving",
+      "avg_days": 0.54,
+      "p90_days": 0.9,
+      "share_of_tat": 0.032
+    },
+    {
+      "stage": "Inspection",
+      "avg_days": 0.94,
+      "p90_days": 1.72,
+      "share_of_tat": 0.056
+    },
+    {
+      "stage": "Teardown & Evaluation",
+      "avg_days": 1.66,
+      "p90_days": 3.03,
+      "share_of_tat": 0.099
+    },
+    {
+      "stage": "Quote Approval",
+      "avg_days": 2.06,
+      "p90_days": 4.69,
+      "share_of_tat": 0.123
+    },
+    {
+      "stage": "Awaiting Parts",
+      "avg_days": 4.19,
+      "p90_days": 11.5,
+      "share_of_tat": 0.251
+    },
+    {
+      "stage": "Repair",
+      "avg_days": 4.1,
+      "p90_days": 7.57,
+      "share_of_tat": 0.245
+    },
+    {
+      "stage": "Reassembly",
+      "avg_days": 1.31,
+      "p90_days": 2.34,
+      "share_of_tat": 0.078
+    },
+    {
+      "stage": "Test",
+      "avg_days": 1.12,
+      "p90_days": 2.13,
+      "share_of_tat": 0.067
+    },
+    {
+      "stage": "Final QA & Ship",
+      "avg_days": 0.8,
+      "p90_days": 1.54,
+      "share_of_tat": 0.048
+    }
+  ],
+  "delay_pareto": [
+    {
+      "primary_delay_reason": "Parts shortage",
+      "late_orders": 1025,
+      "penalty_usd": 5501744.0,
+      "cum_pct": 0.724
+    },
+    {
+      "primary_delay_reason": "Customer quote approval",
+      "late_orders": 288,
+      "penalty_usd": 471941.0,
+      "cum_pct": 0.928
+    },
+    {
+      "primary_delay_reason": "Technician capacity",
+      "late_orders": 57,
+      "penalty_usd": 186293.0,
+      "cum_pct": 0.968
+    },
+    {
+      "primary_delay_reason": "Test failure / rework",
+      "late_orders": 41,
+      "penalty_usd": 104221.0,
+      "cum_pct": 0.997
+    },
+    {
+      "primary_delay_reason": "Documentation / RTS paperwork",
+      "late_orders": 4,
+      "penalty_usd": 3551.0,
+      "cum_pct": 1.0
+    }
+  ]
+}

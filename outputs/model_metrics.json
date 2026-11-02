@@ -1,0 +1,9 @@
+{
+  "train_orders": 2065,
+  "test_orders": 1724,
+  "split": "train: received before 2026-04-01; test: on or after",
+  "test_late_rate": 0.366,
+  "roc_auc": 0.751,
+  "precision_top_10pct": 0.728,
+  "lift_top_10pct": 1.99
+}

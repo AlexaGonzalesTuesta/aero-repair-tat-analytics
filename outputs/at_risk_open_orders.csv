@@ -1,0 +1,212 @@
+order_id,part_number,part_family,site,customer_type,priority,current_stage,age_days,contract_tat_days,days_to_contract_due,late_risk,risk_band
+RO-103808,WB-253,Wheels & Brakes,Straits (APAC),Defense,Routine,Final QA & Ship,14.6,10,-4.6,0.865,High
+RO-103937,WB-250,Wheels & Brakes,Straits (APAC),Defense,Critical,Quote Approval,3.9,10,6.1,0.85,High
+RO-103854,WB-250,Wheels & Brakes,Straits (APAC),Airline,Routine,Awaiting Parts,10.8,10,-0.8,0.771,High
+RO-103941,WB-253,Wheels & Brakes,Straits (APAC),Airline,Routine,Repair,3.8,10,6.2,0.734,High
+RO-103974,WB-255,Wheels & Brakes,Rhine (EU),Defense,Routine,Teardown & Evaluation,1.1,10,8.9,0.733,High
+RO-103951,AL-152,Avionics LRU,Straits (APAC),Defense,Critical,Quote Approval,2.8,15,12.2,0.727,High
+RO-103760,AL-153,Avionics LRU,Straits (APAC),Defense,Routine,Repair,18.4,15,-3.4,0.722,High
+RO-103766,AL-150,Avionics LRU,Straits (APAC),Business Aviation,Routine,Repair,17.9,15,-2.9,0.719,High
+RO-103875,WB-260,Wheels & Brakes,Straits (APAC),Business Aviation,Routine,Final QA & Ship,8.9,10,1.1,0.714,High
+RO-103982,AL-157,Avionics LRU,Straits (APAC),Defense,Routine,Inspection,0.7,15,14.3,0.705,High
+RO-103819,AL-150,Avionics LRU,Desert Ridge (US-SW),Defense,Routine,Repair,13.9,15,1.1,0.695,Medium
+RO-103983,WB-259,Wheels & Brakes,Prairie (US-MW),Defense,Routine,Receiving,0.3,10,9.7,0.688,Medium
+RO-103755,EC-302,Environmental Control,Desert Ridge (US-SW),Defense,Routine,Repair,19.2,18,-1.2,0.685,High
+RO-103887,WB-253,Wheels & Brakes,Rhine (EU),Business Aviation,Routine,Reassembly,7.9,10,2.1,0.675,Medium
+RO-103897,EC-202,Engine Controls,Straits (APAC),Defense,Routine,Quote Approval,7.2,20,12.8,0.672,Medium
+RO-103932,WB-254,Wheels & Brakes,Straits (APAC),Airline,Routine,Awaiting Parts,3.9,10,6.1,0.671,Medium
+RO-103846,AL-152,Avionics LRU,Rhine (EU),Defense,Routine,Reassembly,11.9,15,3.1,0.653,Medium
+RO-103936,WB-250,Wheels & Brakes,Desert Ridge (US-SW),Airline,Routine,Awaiting Parts,3.7,10,6.3,0.651,Medium
+RO-103942,WB-257,Wheels & Brakes,Straits (APAC),Business Aviation,Critical,Awaiting Parts,3.4,10,6.6,0.65,Medium
+RO-103970,AL-155,Avionics LRU,Rhine (EU),Business Aviation,Routine,Teardown & Evaluation,1.5,15,13.5,0.639,Medium
+RO-103868,EC-200,Engine Controls,Desert Ridge (US-SW),Defense,Critical,Quote Approval,9.5,20,10.5,0.639,Medium
+RO-103899,WB-263,Wheels & Brakes,Desert Ridge (US-SW),Business Aviation,Critical,Reassembly,6.6,10,3.4,0.628,Medium
+RO-103913,WB-260,Wheels & Brakes,Straits (APAC),Airline,Routine,Final QA & Ship,5.8,10,4.2,0.627,Medium
+RO-103837,AL-155,Avionics LRU,Straits (APAC),Airline,Critical,Awaiting Parts,12.7,15,2.3,0.627,Medium
+RO-103992,AL-151,Avionics LRU,Straits (APAC),Defense,Routine,Receiving,0.1,15,14.9,0.624,Medium
+RO-103967,WB-260,Wheels & Brakes,Straits (APAC),Airline,Routine,Teardown & Evaluation,1.7,10,8.3,0.623,Medium
+RO-103896,APU-102,Auxiliary Power Unit,Desert Ridge (US-SW),Business Aviation,Routine,Awaiting Parts,7.2,30,22.8,0.622,Medium
+RO-103660,AL-154,Avionics LRU,Straits (APAC),Defense,Routine,Repair,25.3,15,-10.3,0.617,High
+RO-103890,WB-251,Wheels & Brakes,Desert Ridge (US-SW),Defense,Routine,Awaiting Parts,7.7,10,2.3,0.615,Medium
+RO-103762,WB-260,Wheels & Brakes,Straits (APAC),MRO Partner,Routine,Repair,18.5,10,-8.5,0.614,High
+RO-103861,AL-152,Avionics LRU,Straits (APAC),MRO Partner,Routine,Repair,10.2,15,4.8,0.611,Medium
+RO-103473,APU-105,Auxiliary Power Unit,Desert Ridge (US-SW),Defense,Routine,Reassembly,42.5,30,-12.5,0.597,High
+RO-103960,EC-300,Environmental Control,Straits (APAC),MRO Partner,Routine,Teardown & Evaluation,2.3,18,15.7,0.597,Medium
+RO-103891,EC-200,Engine Controls,Rhine (EU),Business Aviation,Routine,Repair,7.7,20,12.3,0.59,Medium
+RO-103735,APU-100,Auxiliary Power Unit,Straits (APAC),Business Aviation,Critical,Test,20.4,30,9.6,0.587,Medium
+RO-103912,EC-302,Environmental Control,Desert Ridge (US-SW),Business Aviation,Routine,Repair,5.6,18,12.4,0.585,Medium
+RO-103885,APU-102,Auxiliary Power Unit,Prairie (US-MW),Defense,Routine,Quote Approval,8.2,30,21.8,0.582,Medium
+RO-103917,APU-100,Auxiliary Power Unit,Straits (APAC),Airline,Routine,Awaiting Parts,5.2,30,24.8,0.57,Medium
+RO-103609,APU-100,Auxiliary Power Unit,Straits (APAC),Airline,Routine,Test,29.6,30,0.4,0.568,Medium
+RO-103920,AL-150,Avionics LRU,Rhine (EU),Business Aviation,Routine,Quote Approval,4.7,15,10.3,0.566,Medium
+RO-103725,AL-156,Avionics LRU,Rhine (EU),Defense,Routine,Awaiting Parts,21.3,15,-6.3,0.565,High
+RO-103877,EC-300,Environmental Control,Desert Ridge (US-SW),Business Aviation,Routine,Awaiting Parts,8.7,18,9.3,0.564,Medium
+RO-103781,AL-164,Avionics LRU,Desert Ridge (US-SW),Defense,Routine,Test,16.8,15,-1.8,0.559,High
+RO-103855,AL-152,Avionics LRU,Rhine (EU),Business Aviation,Routine,Repair,10.8,15,4.2,0.553,Medium
+RO-103907,EC-302,Environmental Control,Prairie (US-MW),Defense,Routine,Quote Approval,6.1,18,11.9,0.546,Medium
+RO-103946,AL-150,Avionics LRU,Prairie (US-MW),Defense,Routine,Quote Approval,3.3,15,11.7,0.546,Medium
+RO-103879,WB-251,Wheels & Brakes,Straits (APAC),Airline,Routine,Reassembly,8.6,10,1.4,0.545,Medium
+RO-103911,EC-303,Environmental Control,Desert Ridge (US-SW),Defense,Routine,Quote Approval,5.9,18,12.1,0.539,Medium
+RO-103878,APU-105,Auxiliary Power Unit,Straits (APAC),Airline,Routine,Awaiting Parts,8.9,30,21.1,0.534,Medium
+RO-103836,APU-103,Auxiliary Power Unit,Straits (APAC),Business Aviation,Routine,Awaiting Parts,12.4,30,17.6,0.52,Medium
+RO-103641,EC-200,Engine Controls,Desert Ridge (US-SW),Airline,Routine,Awaiting Parts,27.0,20,-7.0,0.517,High
+RO-103759,EC-200,Engine Controls,Desert Ridge (US-SW),Airline,Routine,Final QA & Ship,18.5,20,1.5,0.517,Medium
+RO-103901,WB-251,Wheels & Brakes,Desert Ridge (US-SW),Business Aviation,Routine,Reassembly,6.6,10,3.4,0.501,Medium
+RO-103945,AL-150,Avionics LRU,Desert Ridge (US-SW),Airline,Routine,Awaiting Parts,3.4,15,11.6,0.497,Medium
+RO-103806,APU-100,Auxiliary Power Unit,Straits (APAC),Airline,Critical,Awaiting Parts,14.5,30,15.5,0.494,Medium
+RO-103803,EC-300,Environmental Control,Desert Ridge (US-SW),Business Aviation,Critical,Awaiting Parts,15.2,18,2.8,0.49,Medium
+RO-103676,AL-158,Avionics LRU,Desert Ridge (US-SW),Defense,Routine,Awaiting Parts,24.0,15,-9.0,0.485,High
+RO-103895,EC-200,Engine Controls,Rhine (EU),Airline,Routine,Repair,7.3,20,12.7,0.485,Medium
+RO-103971,WB-251,Wheels & Brakes,Rhine (EU),Business Aviation,Routine,Teardown & Evaluation,1.5,10,8.5,0.483,Medium
+RO-103888,WB-257,Wheels & Brakes,Desert Ridge (US-SW),MRO Partner,Routine,Awaiting Parts,7.6,10,2.4,0.481,Medium
+RO-103880,WB-261,Wheels & Brakes,Rhine (EU),MRO Partner,Routine,Repair,8.8,10,1.2,0.479,Medium
+RO-103975,AL-150,Avionics LRU,Prairie (US-MW),Defense,Critical,Inspection,1.0,15,14.0,0.47,Medium
+RO-103935,EC-303,Environmental Control,Straits (APAC),Airline,Routine,Teardown & Evaluation,3.6,18,14.4,0.465,Medium
+RO-103830,AL-150,Avionics LRU,Rhine (EU),Airline,Routine,Repair,12.9,15,2.1,0.463,Medium
+RO-103754,AL-152,Avionics LRU,Desert Ridge (US-SW),Airline,Routine,Repair,19.2,15,-4.2,0.463,High
+RO-103969,EC-303,Environmental Control,Desert Ridge (US-SW),Defense,Critical,Teardown & Evaluation,1.5,18,16.5,0.462,Medium
+RO-103956,AL-151,Avionics LRU,Rhine (EU),Defense,Routine,Quote Approval,2.6,15,12.4,0.46,Medium
+RO-103943,AL-161,Avionics LRU,Prairie (US-MW),Defense,Routine,Quote Approval,3.6,15,11.4,0.456,Medium
+RO-103809,APU-100,Auxiliary Power Unit,Desert Ridge (US-SW),Business Aviation,Critical,Test,14.8,30,15.2,0.455,Medium
+RO-103870,AL-152,Avionics LRU,Rhine (EU),Airline,Routine,Awaiting Parts,9.3,15,5.7,0.451,Medium
+RO-103923,AL-154,Avionics LRU,Rhine (EU),Defense,Routine,Quote Approval,4.5,15,10.5,0.448,Medium
+RO-103682,APU-102,Auxiliary Power Unit,Desert Ridge (US-SW),Airline,Critical,Reassembly,23.7,30,6.3,0.448,Medium
+RO-103933,WB-264,Wheels & Brakes,Rhine (EU),Business Aviation,Routine,Quote Approval,3.8,10,6.2,0.448,Medium
+RO-103600,EC-200,Engine Controls,Desert Ridge (US-SW),Airline,Critical,Reassembly,30.7,20,-10.7,0.442,High
+RO-103840,EC-300,Environmental Control,Rhine (EU),Airline,Routine,Awaiting Parts,12.6,18,5.4,0.439,Medium
+RO-103851,AL-156,Avionics LRU,Prairie (US-MW),Defense,Routine,Test,11.1,15,3.9,0.435,Medium
+RO-103804,EC-312,Environmental Control,Rhine (EU),Defense,Routine,Awaiting Parts,14.8,18,3.2,0.434,Medium
+RO-103955,EC-200,Engine Controls,Desert Ridge (US-SW),MRO Partner,Critical,Awaiting Parts,2.6,20,17.4,0.434,Medium
+RO-103959,APU-100,Auxiliary Power Unit,Desert Ridge (US-SW),Airline,Routine,Teardown & Evaluation,2.5,30,27.5,0.432,Medium
+RO-103953,EC-305,Environmental Control,Desert Ridge (US-SW),Business Aviation,Routine,Teardown & Evaluation,2.7,18,15.3,0.43,Medium
+RO-103829,EC-308,Environmental Control,Desert Ridge (US-SW),Defense,Routine,Awaiting Parts,13.0,18,5.0,0.428,Medium
+RO-103838,EC-305,Environmental Control,Desert Ridge (US-SW),Business Aviation,Routine,Awaiting Parts,12.5,18,5.5,0.427,Medium
+RO-103831,EC-211,Engine Controls,Rhine (EU),Business Aviation,Routine,Awaiting Parts,12.9,20,7.1,0.426,Medium
+RO-103814,WB-261,Wheels & Brakes,Desert Ridge (US-SW),Airline,Critical,Test,14.6,10,-4.6,0.426,High
+RO-103963,APU-100,Auxiliary Power Unit,Rhine (EU),Business Aviation,Critical,Inspection,2.1,30,27.9,0.424,Medium
+RO-103965,APU-100,Auxiliary Power Unit,Desert Ridge (US-SW),MRO Partner,Routine,Inspection,2.0,30,28.0,0.42,Medium
+RO-103822,APU-100,Auxiliary Power Unit,Desert Ridge (US-SW),Airline,Routine,Awaiting Parts,13.7,30,16.3,0.419,Medium
+RO-103940,AL-150,Avionics LRU,Desert Ridge (US-SW),Airline,Critical,Quote Approval,3.6,15,11.4,0.416,Medium
+RO-103898,APU-109,Auxiliary Power Unit,Desert Ridge (US-SW),Business Aviation,Routine,Repair,7.1,30,22.9,0.416,Medium
+RO-103507,APU-105,Auxiliary Power Unit,Desert Ridge (US-SW),Business Aviation,Critical,Repair,39.4,30,-9.4,0.415,High
+RO-103976,WB-251,Wheels & Brakes,Desert Ridge (US-SW),Airline,Routine,Inspection,1.3,10,8.7,0.408,Medium
+RO-103909,WB-251,Wheels & Brakes,Desert Ridge (US-SW),Airline,Routine,Test,5.8,10,4.2,0.406,Medium
+RO-103929,WB-256,Wheels & Brakes,Desert Ridge (US-SW),Airline,Routine,Repair,4.3,10,5.7,0.399,Low
+RO-103947,EC-302,Environmental Control,Desert Ridge (US-SW),MRO Partner,Critical,Quote Approval,3.2,18,14.8,0.398,Low
+RO-103979,EC-312,Environmental Control,Straits (APAC),Airline,Routine,Inspection,1.1,18,16.9,0.395,Low
+RO-103361,APU-105,Auxiliary Power Unit,Desert Ridge (US-SW),Airline,Routine,Repair,51.0,30,-21.0,0.393,High
+RO-103734,APU-111,Auxiliary Power Unit,Straits (APAC),Airline,Routine,Repair,20.4,30,9.6,0.392,Low
+RO-103930,WB-256,Wheels & Brakes,Desert Ridge (US-SW),MRO Partner,Routine,Quote Approval,4.0,10,6.0,0.389,Low
+RO-103834,AL-150,Avionics LRU,Rhine (EU),Airline,Critical,Awaiting Parts,12.4,15,2.6,0.389,Low
+RO-103707,EC-200,Engine Controls,Prairie (US-MW),Business Aviation,Critical,Repair,22.2,20,-2.2,0.389,High
+RO-103665,EC-200,Engine Controls,Prairie (US-MW),Business Aviation,Critical,Reassembly,24.9,20,-4.9,0.388,High
+RO-103722,EC-312,Environmental Control,Desert Ridge (US-SW),Defense,Critical,Final QA & Ship,21.3,18,-3.3,0.387,High
+RO-103915,EC-201,Engine Controls,Straits (APAC),Airline,Routine,Repair,5.6,20,14.4,0.384,Low
+RO-103863,AL-161,Avionics LRU,Prairie (US-MW),Defense,Critical,Quote Approval,10.2,15,4.8,0.384,Low
+RO-103859,EC-203,Engine Controls,Straits (APAC),Airline,Routine,Test,10.4,20,9.6,0.38,Low
+RO-103750,AL-151,Avionics LRU,Desert Ridge (US-SW),Business Aviation,Routine,Repair,19.6,15,-4.6,0.378,High
+RO-103697,APU-106,Auxiliary Power Unit,Desert Ridge (US-SW),Business Aviation,Routine,Reassembly,22.7,30,7.3,0.377,Low
+RO-103791,APU-100,Auxiliary Power Unit,Prairie (US-MW),Business Aviation,Routine,Repair,16.0,30,14.0,0.371,Low
+RO-103684,EC-200,Engine Controls,Prairie (US-MW),Airline,Routine,Awaiting Parts,23.4,20,-3.4,0.362,High
+RO-103768,EC-200,Engine Controls,Prairie (US-MW),Airline,Routine,Awaiting Parts,17.6,20,2.4,0.355,Low
+RO-103752,APU-100,Auxiliary Power Unit,Desert Ridge (US-SW),MRO Partner,Critical,Test,19.4,30,10.6,0.35,Low
+RO-103985,EC-203,Engine Controls,Desert Ridge (US-SW),Business Aviation,Routine,Receiving,0.5,20,19.5,0.35,Low
+RO-103571,APU-105,Auxiliary Power Unit,Prairie (US-MW),Business Aviation,Routine,Repair,33.9,30,-3.9,0.346,High
+RO-103904,AL-151,Avionics LRU,Straits (APAC),MRO Partner,Critical,Repair,6.4,15,8.6,0.34,Low
+RO-103662,AL-157,Avionics LRU,Rhine (EU),MRO Partner,Routine,Repair,24.9,15,-9.9,0.339,High
+RO-103961,AL-150,Avionics LRU,Prairie (US-MW),Airline,Routine,Teardown & Evaluation,2.0,15,13.0,0.338,Low
+RO-103743,EC-305,Environmental Control,Desert Ridge (US-SW),Airline,Routine,Repair,20.2,18,-2.2,0.334,High
+RO-103793,EC-202,Engine Controls,Desert Ridge (US-SW),Airline,Routine,Reassembly,15.8,20,4.2,0.332,Low
+RO-103949,AL-163,Avionics LRU,Rhine (EU),MRO Partner,Routine,Teardown & Evaluation,3.1,15,11.9,0.331,Low
+RO-103874,EC-301,Environmental Control,Prairie (US-MW),Defense,Routine,Repair,9.1,18,8.9,0.33,Low
+RO-103787,APU-101,Auxiliary Power Unit,Straits (APAC),Airline,Routine,Awaiting Parts,16.2,30,13.8,0.329,Low
+RO-103858,APU-100,Auxiliary Power Unit,Rhine (EU),MRO Partner,Critical,Repair,10.5,30,19.5,0.328,Low
+RO-103931,EC-207,Engine Controls,Desert Ridge (US-SW),Defense,Routine,Repair,3.9,20,16.1,0.322,Low
+RO-103984,EC-300,Environmental Control,Prairie (US-MW),Airline,Routine,Receiving,0.4,18,17.6,0.322,Low
+RO-103771,EC-202,Engine Controls,Rhine (EU),Airline,Routine,Awaiting Parts,17.5,20,2.5,0.315,Low
+RO-103908,EC-304,Environmental Control,Desert Ridge (US-SW),Airline,Routine,Repair,6.0,18,12.0,0.314,Low
+RO-103921,APU-109,Auxiliary Power Unit,Desert Ridge (US-SW),MRO Partner,Routine,Teardown & Evaluation,4.7,30,25.3,0.312,Low
+RO-103686,EC-300,Environmental Control,Prairie (US-MW),MRO Partner,Routine,Repair,23.5,18,-5.5,0.311,High
+RO-103886,AL-158,Avionics LRU,Desert Ridge (US-SW),Business Aviation,Critical,Awaiting Parts,7.9,15,7.1,0.311,Low
+RO-103798,APU-103,Auxiliary Power Unit,Desert Ridge (US-SW),Business Aviation,Critical,Repair,15.5,30,14.5,0.31,Low
+RO-103882,AL-151,Avionics LRU,Desert Ridge (US-SW),Business Aviation,Critical,Test,8.7,15,6.3,0.309,Low
+RO-103900,EC-301,Environmental Control,Desert Ridge (US-SW),Business Aviation,Critical,Awaiting Parts,6.4,18,11.6,0.302,Low
+RO-103716,EC-202,Engine Controls,Rhine (EU),MRO Partner,Routine,Awaiting Parts,21.9,20,-1.9,0.301,High
+RO-103919,APU-107,Auxiliary Power Unit,Desert Ridge (US-SW),Business Aviation,Routine,Awaiting Parts,5.0,30,25.0,0.3,Low
+RO-103842,APU-109,Auxiliary Power Unit,Rhine (EU),Airline,Routine,Reassembly,12.0,30,18.0,0.299,Low
+RO-103938,AL-151,Avionics LRU,Desert Ridge (US-SW),Airline,Routine,Quote Approval,3.6,15,11.4,0.294,Low
+RO-103958,AL-163,Avionics LRU,Desert Ridge (US-SW),Airline,Critical,Teardown & Evaluation,2.4,15,12.6,0.293,Low
+RO-103717,APU-109,Auxiliary Power Unit,Rhine (EU),MRO Partner,Routine,Awaiting Parts,21.5,30,8.5,0.293,Low
+RO-103910,AL-151,Avionics LRU,Desert Ridge (US-SW),Airline,Routine,Awaiting Parts,6.0,15,9.0,0.292,Low
+RO-103906,EC-307,Environmental Control,Desert Ridge (US-SW),Airline,Routine,Repair,6.3,18,11.7,0.291,Low
+RO-103848,EC-204,Engine Controls,Rhine (EU),Business Aviation,Routine,Awaiting Parts,11.7,20,8.3,0.284,Low
+RO-103905,AL-150,Avionics LRU,Prairie (US-MW),Airline,Critical,Repair,6.3,15,8.7,0.283,Low
+RO-103903,EC-301,Environmental Control,Desert Ridge (US-SW),Airline,Routine,Awaiting Parts,6.1,18,11.9,0.282,Low
+RO-103818,APU-107,Auxiliary Power Unit,Rhine (EU),Business Aviation,Routine,Repair,14.0,30,16.0,0.279,Low
+RO-103914,EC-306,Environmental Control,Rhine (EU),Business Aviation,Routine,Quote Approval,5.6,18,12.4,0.279,Low
+RO-103977,EC-301,Environmental Control,Desert Ridge (US-SW),MRO Partner,Routine,Inspection,0.9,18,17.1,0.278,Low
+RO-103852,AL-162,Avionics LRU,Rhine (EU),Business Aviation,Routine,Test,10.9,15,4.1,0.276,Low
+RO-103769,APU-100,Auxiliary Power Unit,Prairie (US-MW),MRO Partner,Routine,Test,17.5,30,12.5,0.276,Low
+RO-103850,AL-151,Avionics LRU,Desert Ridge (US-SW),MRO Partner,Routine,Test,11.3,15,3.7,0.275,Low
+RO-103860,AL-151,Avionics LRU,Rhine (EU),Airline,Routine,Final QA & Ship,10.1,15,4.9,0.268,Low
+RO-103928,APU-101,Auxiliary Power Unit,Straits (APAC),Airline,Critical,Quote Approval,4.2,30,25.8,0.26,Low
+RO-103922,AL-156,Avionics LRU,Prairie (US-MW),Airline,Routine,Awaiting Parts,4.6,15,10.4,0.256,Low
+RO-103458,APU-114,Auxiliary Power Unit,Rhine (EU),MRO Partner,Routine,Awaiting Parts,43.7,30,-13.7,0.255,High
+RO-103902,EC-300,Environmental Control,Prairie (US-MW),MRO Partner,Critical,Test,6.6,18,11.4,0.25,Low
+RO-103866,AL-151,Avionics LRU,Prairie (US-MW),Business Aviation,Routine,Awaiting Parts,9.7,15,5.3,0.246,Low
+RO-103957,EC-201,Engine Controls,Rhine (EU),Airline,Routine,Teardown & Evaluation,2.6,20,17.4,0.245,Low
+RO-103925,EC-206,Engine Controls,Prairie (US-MW),Business Aviation,Routine,Teardown & Evaluation,4.5,20,15.5,0.233,Low
+RO-103981,EC-211,Engine Controls,Prairie (US-MW),MRO Partner,Routine,Receiving,0.7,20,19.3,0.227,Low
+RO-103856,EC-201,Engine Controls,Prairie (US-MW),Business Aviation,Routine,Awaiting Parts,11.0,20,9.0,0.227,Low
+RO-103889,APU-113,Auxiliary Power Unit,Desert Ridge (US-SW),Airline,Critical,Repair,7.5,30,22.5,0.225,Low
+RO-103871,EC-306,Environmental Control,Desert Ridge (US-SW),Airline,Routine,Repair,8.9,18,9.1,0.222,Low
+RO-103884,EC-313,Environmental Control,Desert Ridge (US-SW),Airline,Routine,Repair,8.6,18,9.4,0.22,Low
+RO-103795,APU-114,Auxiliary Power Unit,Desert Ridge (US-SW),Airline,Critical,Test,15.9,30,14.1,0.22,Low
+RO-103559,APU-112,Auxiliary Power Unit,Prairie (US-MW),Defense,Routine,Repair,34.5,30,-4.5,0.219,High
+RO-103964,WB-251,Wheels & Brakes,Prairie (US-MW),Airline,Critical,Quote Approval,1.8,10,8.2,0.217,Low
+RO-103991,APU-101,Auxiliary Power Unit,Desert Ridge (US-SW),Airline,Routine,Receiving,0.1,30,29.9,0.215,Low
+RO-103952,WB-251,Wheels & Brakes,Prairie (US-MW),MRO Partner,Critical,Quote Approval,2.6,10,7.4,0.212,Low
+RO-103924,EC-301,Environmental Control,Rhine (EU),Airline,Critical,Quote Approval,4.6,18,13.4,0.209,Low
+RO-103596,APU-106,Auxiliary Power Unit,Rhine (EU),Airline,Critical,Repair,31.3,30,-1.3,0.208,High
+RO-103853,APU-107,Auxiliary Power Unit,Rhine (EU),Airline,Routine,Repair,10.9,30,19.1,0.205,Low
+RO-103796,APU-101,Auxiliary Power Unit,Rhine (EU),MRO Partner,Routine,Test,15.8,30,14.2,0.196,Low
+RO-103918,EC-301,Environmental Control,Prairie (US-MW),Business Aviation,Critical,Repair,5.1,18,12.9,0.193,Low
+RO-103800,APU-101,Auxiliary Power Unit,Prairie (US-MW),Business Aviation,Routine,Awaiting Parts,15.3,30,14.7,0.183,Low
+RO-103790,AL-151,Avionics LRU,Prairie (US-MW),Airline,Routine,Repair,15.9,15,-0.9,0.182,High
+RO-103817,APU-114,Auxiliary Power Unit,Prairie (US-MW),Airline,Routine,Test,14.4,30,15.6,0.176,Low
+RO-103944,EC-210,Engine Controls,Desert Ridge (US-SW),MRO Partner,Routine,Teardown & Evaluation,3.5,20,16.5,0.174,Low
+RO-103876,EC-206,Engine Controls,Prairie (US-MW),Airline,Routine,Repair,8.8,20,11.2,0.171,Low
+RO-103972,EC-303,Environmental Control,Prairie (US-MW),Airline,Critical,Teardown & Evaluation,1.5,18,16.5,0.167,Low
+RO-103864,EC-204,Engine Controls,Rhine (EU),Airline,Critical,Reassembly,10.0,20,10.0,0.165,Low
+RO-103894,APU-108,Auxiliary Power Unit,Desert Ridge (US-SW),Business Aviation,Critical,Quote Approval,7.3,30,22.7,0.163,Low
+RO-103833,EC-201,Engine Controls,Prairie (US-MW),Airline,Routine,Test,12.5,20,7.5,0.155,Low
+RO-103926,EC-309,Environmental Control,Prairie (US-MW),Airline,Routine,Quote Approval,4.5,18,13.5,0.147,Low
+RO-103962,EC-209,Engine Controls,Prairie (US-MW),Airline,Critical,Quote Approval,2.3,20,17.7,0.141,Low
+RO-103502,APU-110,Auxiliary Power Unit,Desert Ridge (US-SW),Airline,Routine,Repair,39.7,30,-9.7,0.137,High
+RO-103954,EC-208,Engine Controls,Prairie (US-MW),Business Aviation,Critical,Teardown & Evaluation,2.4,20,17.6,0.129,Low
+RO-103973,EC-201,Engine Controls,Prairie (US-MW),MRO Partner,Critical,Teardown & Evaluation,1.3,20,18.7,0.121,Low
+RO-103815,EC-208,Engine Controls,Prairie (US-MW),Airline,Routine,Final QA & Ship,14.3,20,5.7,0.121,Low
+RO-103950,EC-214,Engine Controls,Rhine (EU),MRO Partner,Critical,Quote Approval,2.9,20,17.1,0.1,Low
+RO-103695,APU-101,Auxiliary Power Unit,Prairie (US-MW),MRO Partner,Critical,Repair,22.8,30,7.2,0.094,Low
+RO-103893,APU-108,Auxiliary Power Unit,Prairie (US-MW),Airline,Routine,Quote Approval,7.4,30,22.6,0.088,Low
+RO-103881,AL-152,Avionics LRU,Rhine (EU),Defense,AOG,Test,8.8,15,6.2,0.078,Low
+RO-103990,APU-110,Auxiliary Power Unit,Prairie (US-MW),MRO Partner,Routine,Receiving,0.1,30,29.9,0.076,Low
+RO-103865,APU-104,Auxiliary Power Unit,Prairie (US-MW),Airline,Routine,Repair,9.8,30,20.2,0.065,Low
+RO-103988,WB-253,Wheels & Brakes,Rhine (EU),Airline,AOG,Inspection,0.3,10,9.7,0.062,Low
+RO-103934,EC-200,Engine Controls,Prairie (US-MW),Defense,AOG,Quote Approval,3.8,20,16.2,0.058,Low
+RO-103857,APU-102,Auxiliary Power Unit,Desert Ridge (US-SW),Airline,AOG,Reassembly,10.7,30,19.3,0.05,Low
+RO-103862,AL-151,Avionics LRU,Straits (APAC),Business Aviation,AOG,Repair,10.3,15,4.7,0.047,Low
+RO-103869,EC-200,Engine Controls,Desert Ridge (US-SW),Airline,AOG,Reassembly,9.1,20,10.9,0.046,Low
+RO-103927,AL-150,Avionics LRU,Desert Ridge (US-SW),Airline,AOG,Awaiting Parts,4.6,15,10.4,0.043,Low
+RO-103968,AL-150,Avionics LRU,Desert Ridge (US-SW),Airline,AOG,Quote Approval,1.7,15,13.3,0.043,Low
+RO-103948,AL-163,Avionics LRU,Desert Ridge (US-SW),Business Aviation,AOG,Awaiting Parts,2.8,15,12.2,0.039,Low
+RO-103978,WB-251,Wheels & Brakes,Prairie (US-MW),Defense,AOG,Quote Approval,0.9,10,9.1,0.037,Low
+RO-103843,EC-310,Environmental Control,Straits (APAC),Airline,AOG,Repair,12.2,18,5.8,0.036,Low
+RO-103987,EC-202,Engine Controls,Rhine (EU),Business Aviation,AOG,Receiving,0.2,20,19.8,0.03,Low
+RO-103966,AL-154,Avionics LRU,Rhine (EU),Business Aviation,AOG,Quote Approval,1.9,15,13.1,0.024,Low
+RO-103916,EC-303,Environmental Control,Desert Ridge (US-SW),MRO Partner,AOG,Awaiting Parts,5.6,18,12.4,0.022,Low
+RO-103939,APU-109,Auxiliary Power Unit,Prairie (US-MW),Business Aviation,AOG,Quote Approval,3.8,30,26.2,0.018,Low
+RO-103986,AL-151,Avionics LRU,Rhine (EU),Airline,AOG,Inspection,0.3,15,14.7,0.017,Low
+RO-103883,APU-106,Auxiliary Power Unit,Rhine (EU),Airline,AOG,Awaiting Parts,8.4,30,21.6,0.016,Low
+RO-103696,APU-113,Auxiliary Power Unit,Prairie (US-MW),Airline,AOG,Awaiting Parts,22.8,30,7.2,0.01,Low
+RO-103980,EC-201,Engine Controls,Prairie (US-MW),MRO Partner,AOG,Teardown & Evaluation,0.8,20,19.2,0.009,Low
