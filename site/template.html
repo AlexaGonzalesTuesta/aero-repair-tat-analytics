@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repair TAT Analytics | Alexa Gonzales-Tuesta</title>
+<meta name="description" content="Turnaround time analytics for an aerospace component repair station: on-time delivery, bottlenecks, at-risk orders and what-if planning. Synthetic data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#1b1f24; --muted:#5c6470; --line:#d7dbe0; --paper:#f6f7f8; --panel:#ffffff;
+  --navy:#1f4e79; --navy-soft:#e8eef5; --amber:#b45309; --red:#b42318; --green:#1f7a4d; }
+* { box-sizing:border-box; }
+html, body { margin:0; background:var(--paper); color:var(--ink);
+  font-family:'IBM Plex Sans','Segoe UI',Helvetica,Arial,sans-serif; font-size:15px; line-height:1.45; }
+.mono { font-family:'IBM Plex Mono',Consolas,'Courier New',monospace; }
+.wrap { max-width:1240px; margin:0 auto; padding:24px 24px 48px; }
+header.top { display:flex; justify-content:space-between; align-items:flex-end; gap:24px;
+  border-bottom:2px solid var(--ink); padding-bottom:10px; }
+.eyebrow { font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--navy); font-weight:600; }
+h1 { font-size:28px; font-weight:600; margin:2px 0 0; line-height:1.2; }
+.meta { text-align:right; font-size:12.5px; color:var(--muted); line-height:1.6; }
+a { color:var(--navy); }
+.lead { font-size:17px; margin:14px 0 16px; max-width:920px; }
+.lead b { font-weight:600; }
+
+.filters { display:grid; grid-template-columns: 1.4fr 1.6fr 1fr 1.2fr auto; gap:14px; background:var(--panel);
+  border:1px solid var(--line); padding:12px 14px; margin-bottom:14px; align-items:start; }
+.fgroup .flabel { font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted);
+  font-weight:600; margin-bottom:6px; }
+.chips { display:flex; flex-wrap:wrap; gap:6px; }
+.chip { display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line); background:#fff;
+  padding:3px 9px; font-size:13px; cursor:pointer; user-select:none; border-radius:2px; }
+.chip input { accent-color:var(--navy); margin:0; }
+.chip:hover { border-color:var(--navy); }
+.chip:has(input:checked) { background:var(--navy-soft); border-color:#9fb6cf; }
+.chip:focus-within { outline:2px solid var(--navy); outline-offset:1px; }
+.dates { display:flex; gap:6px; align-items:center; font-size:13px; color:var(--muted); }
+input[type=date] { font:inherit; font-size:13px; padding:3px 6px; border:1px solid var(--line); border-radius:2px; background:#fff; color:var(--ink); }
+button { font:inherit; }
+.btn { border:1px solid #b9c0c8; background:#fff; color:var(--ink); padding:5px 12px; font-size:13px;
+  cursor:pointer; border-radius:2px; font-weight:500; }
+.btn:hover { border-color:var(--navy); background:var(--navy-soft); }
+.btn:focus-visible, input:focus-visible, [role=tab]:focus-visible { outline:2px solid var(--navy); outline-offset:1px; }
+
+.kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.kpi { background:var(--panel); border:1px solid var(--line); padding:10px 14px; }
+.kpi .k { font-size:13px; color:var(--muted); }
+.kpi .v { font-size:30px; font-weight:600; font-variant-numeric:tabular-nums; margin-top:2px; }
+.kpi .d { font-size:12.5px; margin-top:2px; }
+.d.bad { color:var(--red); } .d.good { color:var(--green); } .d.neutral { color:var(--muted); }
+.scope { font-size:12.5px; color:var(--muted); margin:8px 0 14px; }
+
+[role=tablist] { display:flex; border-bottom:1px solid var(--line); margin-bottom:14px; }
+[role=tab] { background:none; border:0; border-bottom:3px solid transparent; padding:9px 16px; font-size:15px;
+  font-weight:500; color:var(--muted); cursor:pointer; }
+[role=tab]:hover { color:var(--ink); }
+[role=tab][aria-selected=true] { color:var(--ink); border-bottom-color:var(--navy); }
+.caption { color:var(--muted); font-size:13.5px; margin:0 0 12px; max-width:980px; }
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.card { background:var(--panel); border:1px solid var(--line); padding:12px 14px; }
+.card h3 { font-size:12px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); font-weight:600; margin:0 0 6px; }
+.chart { height:340px; }
+.chart.tall { height:400px; }
+.chart-error { height:100%; display:flex; align-items:center; justify-content:center; text-align:center;
+  color:var(--muted); font-size:13.5px; border:1px dashed var(--line); padding:12px; }
+
+table.data { width:100%; border-collapse:collapse; font-size:13.5px; }
+table.data th { text-align:left; font-weight:600; color:var(--muted); font-size:12px; border-bottom:1px solid var(--ink);
+  padding:6px 8px; white-space:nowrap; cursor:default; }
+table.data td { border-bottom:1px solid #eceef1; padding:6px 8px; }
+table.data td.num, table.data th.num { text-align:right; font-variant-numeric:tabular-nums; }
+table.data tbody tr:hover td { background:#f3f6f9; }
+.tablewrap { overflow:auto; max-height:460px; }
+.band { display:inline-block; font-size:11.5px; font-weight:600; padding:1px 7px; border:1px solid; border-radius:2px; }
+.band.High { color:var(--red); border-color:#e4b3ad; background:#fcf1f0; }
+.band.Medium { color:var(--amber); border-color:#e8c9a6; background:#fdf6ec; }
+.band.Low { color:var(--green); border-color:#a9cfb9; background:#f0f8f3; }
+.neg { color:var(--red); }
+.row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:10px; }
+
+.sliders { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:14px; }
+.slider label { display:flex; justify-content:space-between; font-weight:500; font-size:14px; }
+.slider label .val { font-family:'IBM Plex Mono',Consolas,monospace; color:var(--navy); }
+.slider input[type=range] { width:100%; accent-color:var(--navy); margin:10px 0 4px; }
+.slider .why { font-size:12.5px; color:var(--muted); }
+.results { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+
+.empty { border:1px dashed #b9c0c8; background:#fbfbfc; padding:32px 18px; text-align:center; color:var(--muted); }
+.notice { border:1px solid #e8c9a6; background:#fdf6ec; color:#7a3e06; padding:8px 12px; font-size:13.5px; margin-bottom:12px; }
+footer { margin-top:28px; padding-top:12px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted); }
+[hidden] { display:none !important; }
+
+.chip { white-space:nowrap; }
+[role=tablist] { overflow-x:auto; scrollbar-width:none; }
+[role=tab] { white-space:nowrap; }
+@media (max-width: 600px) {
+  .wrap { padding:16px 14px 40px; }
+  .filters { grid-template-columns:1fr !important; }
+  .dates { flex-wrap:wrap; }
+  .kpis, .results, .sliders { grid-template-columns:1fr !important; }
+  .kpi .v { font-size:26px; }
+  [role=tab] { padding:9px 10px; font-size:14px; }
+}
+@media (max-width: 900px) {
+  .filters { grid-template-columns:1fr 1fr; }
+  .kpis, .results, .sliders { grid-template-columns:1fr 1fr; }
+  .grid2 { grid-template-columns:1fr; }
+  header.top { flex-direction:column; align-items:flex-start; }
+  .meta { text-align:left; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Component repair station &middot; Turnaround time</div>
+      <h1>Repair TAT Analytics</h1>
+    </div>
+    <div class="meta">Built by Alexa Gonzales-Tuesta &middot;
+      <a href="https://github.com/AlexaGonzalesTuesta/aero-repair-tat-analytics">Source on GitHub</a><br>
+      Synthetic data as of <span id="cutoff"></span>; sites, parts and customers are fictional</div>
+  </header>
+
+  <p class="lead">Find <b>where repair time goes</b>, which open orders will miss their contract date, and
+    <b>which fix is worth funding</b>. Filter by site, part family or priority and every number updates.</p>
+
+  <section class="filters" aria-label="Filters">
+    <div class="fgroup"><div class="flabel">Site</div><div class="chips" id="f-site"></div></div>
+    <div class="fgroup"><div class="flabel">Part family</div><div class="chips" id="f-fam"></div></div>
+    <div class="fgroup"><div class="flabel">Priority (AOG = aircraft on ground)</div><div class="chips" id="f-prio"></div></div>
+    <div class="fgroup"><div class="flabel">Received between</div>
+      <div class="dates"><input type="date" id="d-from" aria-label="Received from"> to <input type="date" id="d-to" aria-label="Received to"></div></div>
+    <div class="fgroup"><div class="flabel">&nbsp;</div><button class="btn" id="reset">Reset filters</button></div>
+  </section>
+
+  <div id="plotly-notice" class="notice" hidden>Charts could not load, so they are hidden. Every number and table below still works.</div>
+
+  <section class="kpis" aria-label="Key results">
+    <div class="kpi"><div class="k">On-time delivery</div><div class="v" id="k-on"></div><div class="d" id="k-on-d"></div></div>
+    <div class="kpi"><div class="k">Average turnaround (days)</div><div class="v" id="k-tat"></div><div class="d neutral" id="k-tat-d"></div></div>
+    <div class="kpi"><div class="k">Late-delivery penalties</div><div class="v" id="k-pen"></div><div class="d neutral">contract penalties paid on late orders</div></div>
+    <div class="kpi"><div class="k">Open orders already past contract</div><div class="v" id="k-opc"></div><div class="d neutral" id="k-opc-d"></div></div>
+  </section>
+  <div class="scope" id="scope"></div>
+
+  <div role="tablist" aria-label="Views">
+    <button role="tab" id="t-perf" aria-controls="p-perf" aria-selected="true">Performance</button>
+    <button role="tab" id="t-bn" aria-controls="p-bn" aria-selected="false" tabindex="-1">Bottlenecks</button>
+    <button role="tab" id="t-risk" aria-controls="p-risk" aria-selected="false" tabindex="-1">At-risk open orders</button>
+    <button role="tab" id="t-what" aria-controls="p-what" aria-selected="false" tabindex="-1">What-if scenarios</button>
+  </div>
+
+  <div id="empty" class="empty" hidden>No closed orders match these filters. Widen the filters or press Reset filters.</div>
+
+  <section role="tabpanel" id="p-perf" aria-labelledby="t-perf">
+    <p class="caption">Is the station keeping its promises? Months below the dashed line missed the 85% on-time target.</p>
+    <div class="grid2">
+      <div class="card"><h3>On-time delivery by ship month</h3><div class="chart" id="c-trend"></div></div>
+      <div class="card"><h3>On-time delivery by site</h3><div class="chart" id="c-site"></div></div>
+    </div>
+    <div class="card" style="margin-top:14px"><h3>By part family (lowest on-time first)</h3>
+      <div class="tablewrap"><table class="data" id="tb-fam"></table></div></div>
+  </section>
+
+  <section role="tabpanel" id="p-bn" aria-labelledby="t-bn" hidden>
+    <p class="caption">Where does repair time go? The amber bar is the biggest bottleneck. The right chart ranks the
+      reasons orders ran late, so the first fix targets the biggest share.</p>
+    <div class="grid2">
+      <div class="card"><h3>Average days per repair stage</h3><div class="chart tall" id="c-stage"></div></div>
+      <div class="card"><h3>Primary reason for late orders</h3><div class="chart tall" id="c-pareto"></div></div>
+    </div>
+    <div class="card" style="margin-top:14px"><h3>Part numbers with the most parts-wait days</h3>
+      <div class="tablewrap"><table class="data" id="tb-short"></table></div></div>
+  </section>
+
+  <section role="tabpanel" id="p-risk" aria-labelledby="t-risk" hidden>
+    <p class="caption">Which orders need attention today? A model trained on past orders scores each open order from 0 to 1
+      for its chance of shipping late, using only what is known when the part arrives. A negative
+      <span class="mono">days_to_contract_due</span> means the order is already past its deadline.</p>
+    <div class="row">
+      <strong id="risk-count"></strong>
+      <div class="chips" id="risk-bands" role="radiogroup" aria-label="Risk band"></div>
+      <button class="btn" id="dl">Download CSV</button>
+    </div>
+    <div class="card"><div class="tablewrap"><table class="data" id="tb-risk"></table></div>
+      <div id="risk-empty" class="empty" hidden>No open orders in this risk band for the current filters.</div></div>
+  </section>
+
+  <section role="tabpanel" id="p-what" aria-labelledby="t-what" hidden>
+    <p class="caption">Is a fix worth funding? Each slider is an improvement initiative. Results apply to the orders in your filters.</p>
+    <div class="sliders">
+      <div class="card slider"><label for="s-pw">Cut parts-wait time <span class="val" id="v-pw"></span></label>
+        <input type="range" id="s-pw" min="0" max="100" step="5" value="30">
+        <div class="why">Safety stock or a second supplier for parts that are often short</div></div>
+      <div class="card slider"><label for="s-qa">Cut quote-approval time <span class="val" id="v-qa"></span></label>
+        <input type="range" id="s-qa" min="0" max="100" step="5" value="50">
+        <div class="why">Pre-approved repair cost limits so routine repairs skip the wait</div></div>
+      <div class="card slider"><label for="s-rw">Cut rework time <span class="val" id="v-rw"></span></label>
+        <input type="range" id="s-rw" min="0" max="100" step="5" value="25">
+        <div class="why">A standard checklist before test so fewer units fail and come back</div></div>
+    </div>
+    <div class="results">
+      <div class="kpi"><div class="k">On-time delivery</div><div class="v" id="w-on"></div><div class="d" id="w-on-d"></div></div>
+      <div class="kpi"><div class="k">Average turnaround (days)</div><div class="v" id="w-tat"></div><div class="d" id="w-tat-d"></div></div>
+      <div class="kpi"><div class="k">Penalties avoided</div><div class="v" id="w-sav"></div><div class="d neutral" id="w-sav-d"></div></div>
+    </div>
+    <p class="caption" style="margin-top:10px">Assumes removed wait time does not shift to another stage. Validate with a pilot at one site before committing budget.</p>
+  </section>
+
+  <footer>Python (pandas, scikit-learn) builds the data and the late-risk model; this page recomputes every figure in
+    your browser from the exported orders. Requirements, process maps and the weekly stakeholder report are in the
+    <a href="https://github.com/AlexaGonzalesTuesta/aero-repair-tat-analytics">GitHub repository</a>.</footer>
+</div>
+
+<script src="plotly-basic.min.js"></script>
+<script>
+const D = /*__DATA__*/null;
+const CFG = /*__CONFIG__*/null;
+const RISK = /*__RISK__*/null;
+const N = D.id.length;
+const NAVY = "#1f4e79", AMBER = "#b45309", MUTED = "#5c6470", GRID = "#eceef1";
+const HAS_PLOTLY = typeof window.Plotly !== "undefined";
+if (!HAS_PLOTLY) document.getElementById("plotly-notice").hidden = false;
+
+// ---------------------------------------------------------------- helpers
+const $ = id => document.getElementById(id);
+const pct = (x, d = 1) => (100 * x).toFixed(d) + "%";
+const money = x => "$" + Math.round(x).toLocaleString("en-US");
+const fmt1 = x => (Math.round(x * 10) / 10).toFixed(1);
+const mean = a => a.length ? a.reduce((s, v) => s + v, 0) / a.length : NaN;
+const sum = a => a.reduce((s, v) => s + v, 0);
+function quantile(arr, q) {            // same linear interpolation as pandas
+  const a = [...arr].sort((x, y) => x - y); if (!a.length) return NaN;
+  const pos = (a.length - 1) * q, lo = Math.floor(pos), hi = Math.ceil(pos);
+  return a[lo] + (a[hi] - a[lo]) * (pos - lo);
+}
+function esc(s) { return String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function table(el, cols, rows) {
+  el.innerHTML = "<thead><tr>" + cols.map(c => `<th class="${c.num ? "num" : ""}">${esc(c.label)}</th>`).join("") +
+    "</tr></thead><tbody>" + rows.map(r => "<tr>" + cols.map(c => {
+      const v = r[c.key]; const txt = c.fmt ? c.fmt(v, r) : esc(v);
+      return `<td class="${c.num ? "num" : ""}">${txt}</td>`;
+    }).join("") + "</tr>").join("") + "</tbody>";
+}
+function plot(id, traces, layout) {
+  const el = $(id);
+  if (!HAS_PLOTLY) { el.innerHTML = '<div class="chart-error">Chart unavailable</div>'; return; }
+  const axis = {gridcolor: GRID, automargin: true, zeroline: false};
+  const base = {
+    margin: {l: 10, r: 14, t: 8, b: 30}, paper_bgcolor: "rgba(0,0,0,0)", plot_bgcolor: "#fff",
+    font: {family: "IBM Plex Sans, Segoe UI, Arial", size: 12, color: "#1b1f24"}, showlegend: false,
+    hoverlabel: {font: {family: "IBM Plex Sans, Segoe UI, Arial"}},
+  };
+  const merged = Object.assign(base, layout);
+  merged.xaxis = Object.assign({}, axis, (layout || {}).xaxis);   // keep automargin when a chart sets its own axis
+  merged.yaxis = Object.assign({}, axis, (layout || {}).yaxis);
+  Plotly.react(el, traces, merged, {displayModeBar: false, responsive: true});
+}
+
+// ---------------------------------------------------------------- filters
+const state = {site: new Set(CFG.sites), fam: new Set(CFG.families), prio: new Set(CFG.priorities),
+               from: "", to: "", band: "High"};
+const recDates = [...D.rec].sort();
+const MIN_D = recDates[0], MAX_D = recDates[recDates.length - 1];
+function chips(elId, values, key) {
+  $(elId).innerHTML = values.map((v, i) =>
+    `<label class="chip"><input type="checkbox" data-key="${key}" value="${esc(v)}" checked> ${esc(v)}</label>`).join("");
+}
+chips("f-site", CFG.sites, "site"); chips("f-fam", CFG.families, "fam"); chips("f-prio", CFG.priorities, "prio");
+document.querySelectorAll(".filters input[type=checkbox]").forEach(cb => cb.addEventListener("change", e => {
+  const s = state[e.target.dataset.key]; e.target.checked ? s.add(e.target.value) : s.delete(e.target.value); render();
+}));
+$("d-from").min = $("d-to").min = MIN_D; $("d-from").max = $("d-to").max = MAX_D;
+$("d-from").value = MIN_D; $("d-to").value = MAX_D; state.from = MIN_D; state.to = MAX_D;
+$("d-from").addEventListener("change", e => { state.from = e.target.value || MIN_D; render(); });
+$("d-to").addEventListener("change", e => { state.to = e.target.value || MAX_D; render(); });
+$("reset").addEventListener("click", () => {
+  state.site = new Set(CFG.sites); state.fam = new Set(CFG.families); state.prio = new Set(CFG.priorities);
+  document.querySelectorAll(".filters input[type=checkbox]").forEach(cb => cb.checked = true);
+  $("d-from").value = state.from = MIN_D; $("d-to").value = state.to = MAX_D; render();
+});
+$("cutoff").textContent = CFG.cutoff;
+
+function selected() {
+  const idx = [];
+  for (let i = 0; i < N; i++) {
+    if (state.site.has(D.site[i]) && state.fam.has(D.fam[i]) && state.prio.has(D.prio[i]) &&
+        D.rec[i] >= state.from && D.rec[i] <= state.to) idx.push(i);
+  }
+  return idx;
+}
+
+// ---------------------------------------------------------------- KPI logic (mirrors tat_analytics/kpis.py)
+function headline(idx) {
+  const c = idx.filter(i => D.closed[i]), o = idx.filter(i => !D.closed[i]);
+  return {closed: c.length, open: o.length, tat: mean(c.map(i => D.tat[i])), on: mean(c.map(i => D.on[i])),
+          pen: sum(c.map(i => D.pen[i])), opc: sum(o.map(i => D.opc[i]))};
+}
+function groupBy(idx, key) {
+  const g = new Map();
+  for (const i of idx) { const k = key(i); if (k === null || k === undefined || k === "") continue;
+    if (!g.has(k)) g.set(k, []); g.get(k).push(i); }
+  return g;
+}
+function byDim(c, col) {
+  return [...groupBy(c, i => D[col][i])].map(([k, ix]) => ({name: k, orders: ix.length,
+    tat: mean(ix.map(i => D.tat[i])), on: mean(ix.map(i => D.on[i])), pen: sum(ix.map(i => D.pen[i]))}))
+    .sort((a, b) => a.on - b.on);
+}
+function whatIf(c, pw, qa, rw) {
+  const AP = CFG.stages.indexOf("Awaiting Parts"), QA = CFG.stages.indexOf("Quote Approval");
+  let baseOn = 0, newOn = 0, baseTat = 0, newTat = 0, basePen = 0, newPen = 0;
+  for (const i of c) {
+    const saved = D.stg[i][AP] * pw + D.stg[i][QA] * qa + D.rw[i] * rw;
+    const t = D.tat[i] - saved;
+    baseOn += D.tat[i] <= D.ctat[i]; newOn += t <= D.ctat[i];
+    baseTat += D.tat[i]; newTat += t;
+    basePen += D.pen[i]; newPen += Math.max(0, t - D.ctat[i]) * D.ppd[i];
+  }
+  const n = c.length;
+  return {baseOn: baseOn / n, newOn: newOn / n, baseTat: baseTat / n, newTat: newTat / n, saved: basePen - newPen};
+}
+
+// ---------------------------------------------------------------- render
+let current = [];
+function render() {
+  current = selected();
+  const closed = current.filter(i => D.closed[i]);
+  const empty = closed.length === 0;
+  $("empty").hidden = !empty;
+  document.querySelectorAll("[role=tabpanel]").forEach(p => p.style.visibility = empty ? "hidden" : "visible");
+  const h = headline(current);
+  $("scope").textContent = `${h.closed.toLocaleString()} closed and ${h.open.toLocaleString()} open repair orders in view.`;
+  if (empty) { ["k-on","k-tat","k-pen","k-opc"].forEach(id => $(id).textContent = "–");
+               ["k-on-d","k-tat-d","k-opc-d"].forEach(id => $(id).textContent = ""); return; }
+  const gap = h.on - CFG.target;
+  $("k-on").textContent = pct(h.on);
+  $("k-on-d").textContent = `${gap >= 0 ? "+" : ""}${(100 * gap).toFixed(1)} pts vs ${pct(CFG.target, 0)} target`;
+  $("k-on-d").className = "d " + (gap >= 0 ? "good" : "bad");
+  $("k-tat").textContent = fmt1(h.tat);
+  $("k-tat-d").textContent = "from part received to shipped";
+  $("k-pen").textContent = money(h.pen);
+  $("k-opc").textContent = h.opc;
+  $("k-opc-d").textContent = `of ${h.open} open orders`;
+  renderActive();
+}
+
+function renderPerf() {
+  const c = current.filter(i => D.closed[i]);
+  const months = [...groupBy(c, i => D.shipM[i])].map(([m, ix]) => ({m, n: ix.length, on: mean(ix.map(i => D.on[i]))}))
+    .filter(r => r.n >= 10).sort((a, b) => a.m < b.m ? -1 : 1);
+  plot("c-trend", [{x: months.map(r => r.m), y: months.map(r => r.on), customdata: months.map(r => r.n), type: "scatter",
+    mode: "lines+markers", line: {color: NAVY, width: 2}, marker: {size: 6},
+    hovertemplate: "%{x}<br>On-time %{y:.1%}<br>%{customdata} orders<extra></extra>"}],
+    {yaxis: {tickformat: ".0%", range: [0, 1], gridcolor: GRID},
+     shapes: [{type: "line", xref: "paper", x0: 0, x1: 1, y0: CFG.target, y1: CFG.target, line: {dash: "dash", color: MUTED, width: 1}}],
+     annotations: [{xref: "paper", x: 1, y: CFG.target, text: "Target 85%", showarrow: false, xanchor: "right", yanchor: "bottom", font: {size: 11, color: MUTED}}]});
+  const s = byDim(c, "site").reverse();
+  plot("c-site", [{x: s.map(r => r.on), y: s.map(r => r.name), type: "bar", orientation: "h", marker: {color: NAVY},
+    text: s.map(r => pct(r.on, 0)), textposition: "auto", customdata: s.map(r => r.orders),
+    hovertemplate: "%{y}<br>On-time %{x:.1%}<br>%{customdata} orders<extra></extra>"}],
+    {xaxis: {tickformat: ".0%", range: [0, 1], gridcolor: GRID}});
+  table($("tb-fam"), [{key: "name", label: "Part family"}, {key: "orders", label: "Closed orders", num: 1},
+    {key: "tat", label: "Avg TAT (days)", num: 1, fmt: fmt1}, {key: "on", label: "On-time", num: 1, fmt: v => pct(v)},
+    {key: "pen", label: "Penalties", num: 1, fmt: money}], byDim(c, "fam"));
+}
+
+function renderBn() {
+  const c = current.filter(i => D.closed[i] && D.ev[i]);
+  const st = CFG.stages.map((name, k) => ({name, avg: mean(c.map(i => D.stg[i][k])), p90: quantile(c.map(i => D.stg[i][k]), .9)}));
+  const total = sum(st.map(r => r.avg)); const max = Math.max(...st.map(r => r.avg));
+  const rev = [...st].reverse();
+  plot("c-stage", [{x: rev.map(r => r.avg), y: rev.map(r => r.name), type: "bar", orientation: "h",
+    marker: {color: rev.map(r => r.avg === max ? AMBER : NAVY)}, text: rev.map(r => r.avg.toFixed(1) + " d"), textposition: "auto",
+    customdata: rev.map(r => [r.p90, r.avg / total]),
+    hovertemplate: "%{y}<br>Average %{x:.1f} days<br>90th percentile %{customdata[0]:.1f} days<br>%{customdata[1]:.0%} of turnaround<extra></extra>"}], {});
+  const late = current.filter(i => D.closed[i] && D.late[i] === 1);
+  const p = [...groupBy(late, i => D.reason[i])].map(([k, ix]) => ({k, n: ix.length, pen: sum(ix.map(i => D.pen[i]))}))
+    .sort((a, b) => b.n - a.n);
+  let cum = 0; const tot = sum(p.map(r => r.n)); p.forEach(r => { cum += r.n; r.cum = cum / tot; });
+  plot("c-pareto", [{x: p.map(r => r.k), y: p.map(r => r.n), type: "bar", marker: {color: p.map((r, i) => i === 0 ? AMBER : NAVY)},
+    text: p.map(r => r.n), textposition: "auto", customdata: p.map(r => [r.cum, r.pen]),
+    hovertemplate: "%{x}<br>%{y} late orders<br>Cumulative %{customdata[0]:.0%}<br>Penalties $%{customdata[1]:,.0f}<extra></extra>"}],
+    {xaxis: {automargin: true, gridcolor: GRID}});
+  const AP = CFG.stages.indexOf("Awaiting Parts");
+  const parts = [...groupBy(current.filter(i => D.apn[i] > 0), i => D.pn[i])].map(([k, ix]) => {
+    const days = sum(ix.map(i => D.stg[i][AP])), events = sum(ix.map(i => D.apn[i]));
+    return {pn: k, days, orders: ix.length, avg: days / events};
+  }).sort((a, b) => b.days - a.days).slice(0, 10);
+  table($("tb-short"), [{key: "pn", label: "Part number", fmt: v => `<span class="mono">${esc(v)}</span>`},
+    {key: "days", label: "Total parts-wait days", num: 1, fmt: fmt1}, {key: "orders", label: "Orders", num: 1},
+    {key: "avg", label: "Avg days per wait", num: 1, fmt: fmt1}], parts);
+}
+
+const RISK_COLS = RISK.columns;
+const RI = Object.fromEntries(RISK_COLS.map((c, i) => [c, i]));
+$("risk-bands").innerHTML = ["High", "Medium", "Low", "All"].map(b =>
+  `<label class="chip"><input type="radio" name="band" value="${b}" ${b === "High" ? "checked" : ""}> ${b}</label>`).join("");
+document.querySelectorAll("#risk-bands input").forEach(r => r.addEventListener("change", e => { state.band = e.target.value; renderRisk(); }));
+function riskRows() {
+  const ids = new Set(current.map(i => D.id[i]));
+  return RISK.data.filter(r => ids.has(r[RI.order_id]));
+}
+function renderRisk() {
+  const all = riskRows();
+  $("risk-count").textContent = `${all.filter(r => r[RI.risk_band] === "High").length} open orders are High risk of missing their contract date.`;
+  const rows = state.band === "All" ? all : all.filter(r => r[RI.risk_band] === state.band);
+  $("risk-empty").hidden = rows.length > 0; $("tb-risk").hidden = rows.length === 0;
+  const objs = rows.map(r => Object.fromEntries(RISK_COLS.map((c, i) => [c, r[i]])));
+  table($("tb-risk"), [{key: "order_id", label: "Order", fmt: v => `<span class="mono">${esc(v)}</span>`},
+    {key: "part_family", label: "Part family"}, {key: "site", label: "Site"}, {key: "priority", label: "Priority"},
+    {key: "current_stage", label: "Current stage"}, {key: "age_days", label: "Age (days)", num: 1, fmt: fmt1},
+    {key: "days_to_contract_due", label: "days_to_contract_due", num: 1, fmt: v => `<span class="${v < 0 ? "neg" : ""}">${fmt1(v)}</span>`},
+    {key: "late_risk", label: "Late risk", num: 1, fmt: v => Number(v).toFixed(2)},
+    {key: "risk_band", label: "Band", fmt: v => `<span class="band ${esc(v)}">${esc(v)}</span>`}], objs);
+}
+$("dl").addEventListener("click", () => {
+  const all = riskRows(); const rows = state.band === "All" ? all : all.filter(r => r[RI.risk_band] === state.band);
+  const csv = [RISK_COLS.join(",")].concat(rows.map(r => r.map(v => /[",]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : v).join(","))).join("\n");
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], {type: "text/csv"}));
+  a.download = `at_risk_open_orders_${state.band.toLowerCase()}.csv`; a.click(); URL.revokeObjectURL(a.href);
+});
+
+["pw", "qa", "rw"].forEach(k => $("s-" + k).addEventListener("input", renderWhat));
+function renderWhat() {
+  const v = k => Number($("s-" + k).value) / 100;
+  ["pw", "qa", "rw"].forEach(k => $("v-" + k).textContent = $("s-" + k).value + "%");
+  const c = current.filter(i => D.closed[i]); if (!c.length) return;
+  const r = whatIf(c, v("pw"), v("qa"), v("rw"));
+  const dOn = r.newOn - r.baseOn, dTat = Math.round(r.newTat * 10) / 10 - Math.round(r.baseTat * 10) / 10;
+  $("w-on").textContent = pct(r.newOn);
+  $("w-on-d").textContent = `${dOn >= 0 ? "+" : ""}${(100 * dOn).toFixed(1)} pts from ${pct(r.baseOn)}`;
+  $("w-on-d").className = "d " + (dOn > 0 ? "good" : "neutral");
+  $("w-tat").textContent = fmt1(r.newTat);
+  $("w-tat-d").textContent = `${dTat <= 0 ? "" : "+"}${dTat.toFixed(1)} days from ${fmt1(r.baseTat)}`;
+  $("w-tat-d").className = "d " + (dTat < 0 ? "good" : "neutral");
+  $("w-sav").textContent = money(r.saved);
+  $("w-sav-d").textContent = "less penalty cost on these orders";
+}
+
+// ---------------------------------------------------------------- tabs
+const TABS = [["t-perf", "p-perf", renderPerf], ["t-bn", "p-bn", renderBn], ["t-risk", "p-risk", renderRisk], ["t-what", "p-what", renderWhat]];
+let active = 0;
+function renderActive() { if (current.some(i => D.closed[i])) TABS[active][2](); }
+function select(n, focus) {
+  active = n;
+  TABS.forEach(([t, p], i) => { const on = i === n; $(t).setAttribute("aria-selected", on); $(t).tabIndex = on ? 0 : -1; $(p).hidden = !on; });
+  if (focus) $(TABS[n][0]).focus();
+  renderActive();
+  if (HAS_PLOTLY) $(TABS[n][1]).querySelectorAll(".chart").forEach(c => c.data && Plotly.Plots.resize(c));
+}
+TABS.forEach(([t], i) => {
+  $(t).addEventListener("click", () => select(i));
+  $(t).addEventListener("keydown", e => {
+    if (e.key === "ArrowRight") select((i + 1) % TABS.length, true);
+    if (e.key === "ArrowLeft") select((i + TABS.length - 1) % TABS.length, true);
+  });
+});
+render();
+</script>
+</body>
+</html>
