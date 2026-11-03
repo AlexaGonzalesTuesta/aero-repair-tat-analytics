@@ -16,15 +16,20 @@ LINKEDIN_URL = "https://www.linkedin.com/in/alexa-gonzales-tuesta/"
 st.set_page_config(page_title="Repair TAT Analytics", layout="wide")
 
 
+SNAPSHOT_DIR = Path(__file__).resolve().parent / "snapshot"
+
+
 @st.cache_data
 def load():
-    fact = C.PROCESSED_DIR / "fact_repair_orders.csv"
-    if not fact.exists():
-        import run_pipeline
+    """Read the processed tables. A fresh pipeline run (data/processed) wins; otherwise the
+    app uses the bundled snapshot, so a cold start on the free host only reads files and
+    never re-runs the pipeline while a visitor waits."""
+    def path(name):
+        fresh = C.PROCESSED_DIR / name
+        return fresh if fresh.exists() else SNAPSHOT_DIR / f"{name}.gz"
 
-        run_pipeline.main()
-    f = pd.read_csv(fact, parse_dates=["received_ts", "shipped_ts"])
-    ev = pd.read_csv(C.PROCESSED_DIR / "fact_stage_events.csv", parse_dates=["start_ts", "end_ts"])
+    f = pd.read_csv(path("fact_repair_orders.csv"), parse_dates=["received_ts", "shipped_ts"])
+    ev = pd.read_csv(path("fact_stage_events.csv"), parse_dates=["start_ts", "end_ts"])
     at_risk = pd.read_csv(C.OUTPUT_DIR / "at_risk_open_orders.csv")
     return f, ev, at_risk
 
